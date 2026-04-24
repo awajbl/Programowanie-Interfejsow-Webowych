@@ -1,73 +1,98 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kalkulator</title>
-    <link rel="stylesheet" type="text/css" href="style.css"/>
-</head>
-
-<body>
-    <header>
-        <h1>Kalkulator</h1>
+    <title>Giercownia.pl</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  
+  <body>
+    <header class="top-bar">
+      <h1>Giercownia</h1>
+      <nav>
+        <button>Zarejestruj</button>
+        <button>Zaloguj</button>
+        <button>Koszyk</button>
+      </nav>
     </header>
 
     <main>
-        <section class="calc-card">
-              <h2>Wprowadź działanie</h2>
-              <form action="#" onsubmit="return false;">
-                <div class="calc-inputs">
-                    <label for="number-a">Liczba A:</label>
-                    <input 
-                        type="text" 
-                        id="number-a"
-                        placeholder="Wpisz liczbę"
-                        class="calc-input"
-                        aria-label="Liczba A"
-                    />
-                    <label for="number-b">Liczba B:</label>
-                    <input 
-                        type="text" 
-                        id="number-b"  
-                        placeholder="Wpisz liczbę" 
-                        class="calc-input" 
-                        aria-label="Liczba B" />
-                </div>
-                
-                <div class="calc-buttons">
-                    <button class="calc-button calc-button-operator">+</button>
-                    <button class="calc-button calc-button-operator">-</button>
-                    <button class="calc-button calc-button-operator">*</button>
-                    <button class="calc-button calc-button-operator">/</button>
-                    <button class="calc-button">7</button>
-                    <button class="calc-button">8</button>
-                    <button class="calc-button">9</button>
-                    <button class="calc-button">4</button>
-                    <button class="calc-button">5</button>
-                    <button class="calc-button">6</button>
-                    <button class="calc-button">1</button>
-                    <button class="calc-button">2</button>
-                    <button class="calc-button">3</button>
-                    <button class="calc-button">0</button>
-                    <button class="calc-button calc-button-equals">=</button>
-                </div>
-              </form>
-        </section>
+      <!-- FILTRY -->
+      <aside class="filters">
+        <h2>Filtry</h2>
 
-        <section class="history-card">
-            <h2>Historia</h2>
-            <!-- Ten tag "output" nie jest potrzebny, ale jest dobrą praktyką semantyczne HTMLa bo mówi, że TU SĄ WYNIKI -->
-            <output>
-                <ul>
-                    <li>2 + 2 = 5</li>
-                    <li>10 * 3 = 33</li>
-                    <li>100 / 4 = 25</li>
-                    <li>15 - 7 = 9</li>
-                </ul>
-            </output>
-        </section>
+        <label>Najwyższa cena:</label>
+        <input type="number" placeholder="np. 200" />
+        <label>Najniższa cena:</label>
+        <input type="number" placeholder="np. 200" />
+
+        <label>Rodzaj:</label>
+        <select>
+          <option>Wszystkie</option>
+          <option>Klasyczne</option>
+          <option>Strategiczne</option>
+          <option>Ekonomiczne</option>
+          <option>Kooperacyjne</option>
+          <option>Imprezowe</option>
+          <option>Łamigłówki</option>
+          <option>RPG</option>
+          <option>Wojenne</option>
+        </select>
+
+        <label>Minimalna liczba graczy:</label>
+        <input type="number" placeholder="np. 4" />
+
+        <label>Maksymalna liczba graczy:</label>
+        <input type="number" placeholder="np. 4" />
+
+        <label>Wydawnictwo:</label>
+        <input type="text" placeholder="np. Rebel" />
+
+        <label>Słowo w opisie:</label>
+        <input type="text" placeholder="np. fantastyka" />
+
+        <label>Minimalny czas gry (min):</label>
+        <input type="number" placeholder="np. 60" />
+
+        <label>Minimalny czas gry (min):</label>
+        <input type="number" placeholder="np. 60" />
+
+        <button class="search-button">Szukaj</button>
+      </aside>
+
+      <!-- LISTA PRODUKTÓW -->
+      <section class="products">
+        <div class="products-header">
+          <h2>Lista gier</h2>
+          <button>
+            <a href="index2.html" class="add-button">Dodaj grę</a>
+          </button>
+        </div>
+
+        <div class="product-list">
+          <article class="product-card">
+            <h3>Catan</h3>
+            <p>Strategiczna gra handlowa</p>
+            <p>Gracze: 3-4</p>
+            <p>Czas: 60-120 min</p>
+            <p>Cena: 160 zł</p>
+          </article>
+
+          <article class="product-card">
+            <h3>Carcassonne</h3>
+            <p>Budowanie krainy</p>
+            <p>Gracze: 2-5</p>
+            <p>Czas: 30-45 min</p>
+            <p>Cena: 150 zł</p>
+          </article>
+        </div>
+      </section>
     </main>
-</body>
-
+  </body>
 </html>
+
+
+
+
+

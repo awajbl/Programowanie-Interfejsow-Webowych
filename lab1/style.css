@@ -1,168 +1,132 @@
-/*
-===== ZMIENNE =====
-Zaleca się w grupie :root
---nazwa-zmiennej: wartość
-*/
 :root {
-  --calc-primary: lightblue;
-  --calc-primary-dark: blue;
-  --calc-equals: #25b15a;
+  --search-col: #4f46e5;
+  --background: #f3f4f7;
+  --card: #ffffff;
+  --text: black;
+  --border: #ddd;
 
-  --calc-bg: #f3f4f7;
-  --calc-surface: #ffffff;
-  --calc-text: #20232b;
-  --calc-text-muted: darkblue;
-  --calc-border: #dbe0e8;
-  --calc-button: #eff1f5;
-  --calc-button-hover: #dbe0e8;
-
-  --radius: 12px;
-  --shadow: 0 4px 24px pink;
+  --radius: 5px;
 }
 
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    padding: 1rem;
-    background: var(--calc-bg);
-    color: var(--calc-text);
+  padding: 1rem;
+  background: var(--background);
+  color: var(--text);
 }
 
-/* ===== GŁÓWNY ekran ===== */
 main {
   display: flex;
   gap: 1rem;
-  align-items: flex-start;
-  max-width: 60%;
-  margin: 0 auto;
 }
 
-/* ===== KARTA KALKULATORA ===== */
-.calc-card {
-  flex: 1;
-  background: var(--calc-surface);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 1.5rem;
-}
 
-h2,
-label {
-  font-size: small;
-  text-transform: uppercase;
-
-  color: var(--calc-text-muted);
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 1rem;
 }
 
-/* ===== WYŚWIETLACZ ===== */
-.calc-input {
-  width: 100%;
-  padding: 1rem 1.25rem;
-  font-size: 2rem;
-  text-align: right;
-  border: 2px solid var(--calc-border);
-  border-radius: calc(var(--radius) - 4px);
-  background: var(--calc-bg);
-  color: var(--calc-text);
-  outline: none;
-  margin-bottom: 0.75rem;
-  transition: all 200ms ease;
-}
 
-.calc-input:focus {
-  border-color: var(--calc-primary);
-  box-shadow: 0 0 0 3px hsla(220, 80%, 55%, 0.25);
-}
 
-/* ===== GRID PRZYCISKÓW ===== */
-.calc-buttons {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 6px;
-}
-
-/* ===== PRZYCISKI ===== */
-.calc-button {
-  padding: 1.1rem;
-  font-size: 1.125rem;
-  cursor: pointer;
-  border: none;
-  /* W CSSie można wykonać obliczenia. Nie polecam za często, ale można */
-  border-radius: calc(var(--radius) - 4px);
-  font-weight: 500;
-  background: var(--calc-button);
-  color: var(--calc-text);
-}
-
-.calc-button-equals {
-  /* Zauwazcie, że ustawienie koloru szczegółowego musi być tym dla ogólnego buttona */
-  grid-column: span 2;
-  background-color: var(--calc-equals);
-}
-
-.calc-button:hover {
-  background: var(--calc-button-hover);
-}
-
-/* ===== HISTORIA ===== */
-.history-card {
-  min-width: 200px;
-  background: var(--calc-surface);
+.filters {
+  width: 250px;
+  background: var(--card);
+  padding: 1rem;
   border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 1.5rem;
+}
+
+.filters input,
+.filters select {
+  width: 100%;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
 }
 
 
-ul {
-  list-style: none;
+
+.products {
+  flex: 1;
 }
 
-li {
-  padding: 0.6rem 0.75rem;
-  border-radius: 6px;
-  font-size: 0.9rem;
-  color: var(--calc-text-muted);
+.products-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
 }
 
-/* Pozioma linia między list-itemami */
-li + li {
-  border-top: 1px solid var(--calc-border);
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
 }
+
+.product-card {
+  background: var(--card);
+  padding: 1rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+
+
+
+.form-page {
+  display: flex;
+  justify-content: center;
+}
+
+.game-form {
+  width: 400px;
+  background: var(--card);
+  padding: 1rem;
+  border-radius: var(--radius);
+}
+
+.game-form input,
+.game-form textarea {
+  width: 100%;
+  margin-bottom: 0.75rem;
+  padding: 0.5rem;
+}
+
+
+
+button,
+.add-button {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: var(--radius);
+}
+
+.search-button {
+  background: var(--search-col);
+  color: white;
+  border-color: #4f46e5;
+}
+
 
 
 @media (max-width: 768px) {
-  body {
-    padding: 1rem;
-  }
-
   main {
     flex-direction: column;
-    /*
-    Jedna zmiana i layout "obraca się" z wiersza na kolumnę
-    */
-    gap: 1rem;
   }
 
-  .history-card {
-    min-width: auto;
+  .filters {
     width: 100%;
-    /* Na mobilce historia rozciąga się na pełną szerokość */
   }
 
-  #calc-input {
-    font-size: 1.5rem;
-    padding: 0.75rem 1rem;
+  .product-list {
+    grid-template-columns: 1fr;
   }
 
-  .calc-button {
-    padding: 0.9rem;
-    font-size: 1rem;
+  .game-form {
+    width: 100%;
   }
 }
