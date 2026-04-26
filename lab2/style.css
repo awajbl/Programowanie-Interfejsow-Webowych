@@ -1,0 +1,89 @@
+:root {
+    --padding: 8px
+}
+
+
+body {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    padding: var(--padding);
+}
+
+
+input {
+    padding: var(--padding);
+    border: 2px solid #ababab;
+}
+
+button {
+    padding: var(--padding);
+    background-color: #28a745;
+    border: 2px none;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+ul{
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    padding: var(--padding);
+    background-color: #f9f9f9;
+    border: 1px hidden;
+    border-bottom: 1px solid #aaaaaa;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+}
+
+li:hover {
+    background-color: #efefef;
+}
+
+.task-prop {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.completed {
+    display: flex;
+    justify-content: space-between;
+    text-decoration: line-through;
+    color: #888;
+}
+
+
+.completion-date {
+    color: #888;
+    margin-left: 10px;
+}
+
+.delete-button {
+    order: 99;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 0px;
+    padding: var(--padding);
+    cursor: pointer;
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+.delete-button:hover {
+    background-color: #cc0000;
+}
+
+
+.completed .delete-button {
+    text-decoration: none;
+}
