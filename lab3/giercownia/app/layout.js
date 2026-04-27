@@ -1,5 +1,4 @@
 import "./globals.css";
-import Link from "next/link";
 
 export const metadata = {
   title: "Giercownia.pl",
@@ -11,7 +10,7 @@ export default function RootLayout({ children }) {
     <html lang="pl">
       <body>
         <header className="top-bar">
-          <Link href="/"><h1>Giercownia</h1></Link>
+          <h1>Giercownia</h1>
           <nav>
             <button>Zarejestruj</button>
             <button>Zaloguj</button>
