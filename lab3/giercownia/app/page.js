@@ -40,10 +40,10 @@ export default function Home() {
       <aside className="filters">
         <h2>Filtry</h2>
         <label>Najniższa cena:</label>
-        <input type="number" onChange={(e) => setFilters({...filters, minPrice: e.target.value})} />
+        <input type="number" step="0.01" min="0" onChange={(e) => setFilters({...filters, minPrice: e.target.value})} />
         
         <label>Najwyższa cena:</label>
-        <input type="number" onChange={(e) => setFilters({...filters, maxPrice: e.target.value})} />
+        <input type="number" step="0.01" min="0" onChange={(e) => setFilters({...filters, maxPrice: e.target.value})} />
 
         <label>Rodzaj:</label>
         <select onChange={(e) => setFilters({...filters, type: e.target.value})}>
@@ -58,10 +58,10 @@ export default function Home() {
         </select>
 
         <label>Minimalna liczba graczy:</label>
-        <input type="number" onChange={(e) => setFilters({...filters, minPlayers: e.target.value})} />
+        <input type="number" min="0" onChange={(e) => setFilters({...filters, minPlayers: e.target.value})} />
         
         <label>Maksymalna liczba graczy:</label>
-        <input type="number" onChange={(e) => setFilters({...filters, maxPlayers: e.target.value})} />
+        <input type="number" min="0" onChange={(e) => setFilters({...filters, maxPlayers: e.target.value})} />
 
         <label>Minimalny czas gry:</label>
         <input type="number" placeholder="w minutach" onChange={(e) => setFilters({...filters, minTime: e.target.value})} />
@@ -79,8 +79,13 @@ export default function Home() {
       </aside>
 
       <section className="products">
-        <div className="products-header">
+        <div className="products-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
           <h2>Lista gier ({filteredGames.length})</h2>
+          <Link href="/games/add">
+            <button className="add-button" style={{ padding: '10px 20px', cursor: 'pointer', background: '#27ae60', color: 'white', border: 'none', borderRadius: '5px' }}>
+              + Dodaj grę
+            </button>
+          </Link>
         </div>
 
         <div className="product-list">

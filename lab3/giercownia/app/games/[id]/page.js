@@ -1,23 +1,23 @@
-"use client"; // Musimy użyć trybu klienta, aby korzystać z hooków
-
+"use client";
 import { use } from "react";
 import gamesData from "@/data/board-games.json";
 import Link from "next/link";
 
 export default function GameDetails({ params }) {
-  // Rozpakowujemy promise params za pomocą hooka use()
   const resolvedParams = use(params);
 
-  // Szukamy gry w danych na podstawie id
   const game = gamesData.board_games.find(g => g.id === parseInt(resolvedParams.id));
 
-  const addPlaceholder = (e) => {
+
+  const placeholderImage = (e) => {
     e.target.src = "/placeholder_300x300.webp";
+    console.log("Nie znaleziono obrazu.")
   };
+
 
   if (!game) {
     return (
-      <main style={{ padding: "20px" }}>
+      <main>
         <h1>Nie znaleziono gry.</h1>
         <Link href="/" style={{textDecoration: 'none'}}>&#60; Powrót do listy</Link>
       </main>
@@ -41,7 +41,7 @@ export default function GameDetails({ params }) {
               <img 
                 key={index} 
                 src={`/${img}`} 
-                onError={addPlaceholder}
+                onError={placeholderImage}
                 alt={`${game.title} - zdjęcie ${index + 1}`} 
                 style={{ width: '300px', height: 'auto', borderRadius: '8px', border: '1px solid #ddd' }} 
               />
@@ -70,6 +70,13 @@ export default function GameDetails({ params }) {
               Cena: {game.price_pln} zł
             </p>
           </div>
+
+
+          <Link href={`/games/${resolvedParams.id}/edit`}>
+          <button style={{ marginTop: "40px", padding: '8px 15px', background: '#f39c12', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>
+            Edytuj grę
+          </button>
+        </Link>
         </div>
       </section>
     </main>
