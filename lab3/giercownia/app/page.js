@@ -35,10 +35,27 @@ export default function Home() {
     setFilteredGames(filtered);
   };
 
+  // Funkcja czyszcząca bez użycia dodatkowej zmiennej
+  const clearFilters = () => {
+    setFilters({
+      maxPrice: "",
+      minPrice: "",
+      type: "Wszystkie",
+      minPlayers: "",
+      maxPlayers: "",
+      publisher: "",
+      descriptionWord: "",
+      minTime: "",
+      maxTime: ""
+    });
+    setFilteredGames(gamesData.board_games);
+  };
+
   return (
     <main>
       <aside className="filters">
         <h2>Filtry</h2>
+        
         <label>Najniższa cena:</label>
         <input type="number" step="0.01" min="0" onChange={(e) => setFilters({...filters, minPrice: e.target.value})} />
         
@@ -64,10 +81,10 @@ export default function Home() {
         <input type="number" min="0" onChange={(e) => setFilters({...filters, maxPlayers: e.target.value})} />
 
         <label>Minimalny czas gry:</label>
-        <input type="number" placeholder="w minutach" onChange={(e) => setFilters({...filters, minTime: e.target.value})} />
+        <input type="number" placeholder="w minutach" min="1" onChange={(e) => setFilters({...filters, minTime: e.target.value})} />
         
         <label>Maksymalny czas gry:</label>
-        <input type="number" placeholder="w minutach" onChange={(e) => setFilters({...filters, maxTime: e.target.value})} />
+        <input type="number" placeholder="w minutach" min="1" onChange={(e) => setFilters({...filters, maxTime: e.target.value})} />
 
         <label>Wydawca:</label>
         <input type="text" placeholder="np. Rebel" onChange={(e) => setFilters({...filters, publisher: e.target.value})} />
@@ -75,14 +92,17 @@ export default function Home() {
         <label>Słowo w opisie:</label>
         <input type="text" placeholder="np. fantastyka" onChange={(e) => setFilters({...filters, descriptionWord: e.target.value})} />
 
-        <button className="search-button" onClick={handleSearch}>Szukaj</button>
+        <div className="search-actions">
+          <button className="search-button" onClick={handleSearch}>Szukaj</button>
+          <button className="btn-clear" onClick={clearFilters}>Wyczyść filtry</button>
+        </div>
       </aside>
 
       <section className="products">
         <div className="products-header">
           <h2>Lista gier ({filteredGames.length})</h2>
           <Link href="/games/add">
-            <button className="add-button" style={{ padding: '10px 20px', cursor: 'pointer', background: '#27ae60', color: 'white', border: 'none', borderRadius: '5px' }}>
+            <button className="add-button">
               + Dodaj grę
             </button>
           </Link>
