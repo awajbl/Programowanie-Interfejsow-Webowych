@@ -11,24 +11,26 @@ export default function Home() {
     minPlayers: "",
     maxPlayers: "",
     publisher: "",
-    query: "",
-    minTime: ""
+    descriptionWord: "",
+    minTime: "",
+    maxTime: ""
   });
 
   const [filteredGames, setFilteredGames] = useState(gamesData.board_games);
 
   const handleSearch = () => {
     let filtered = gamesData.board_games.filter((game) => {
-      const matchesPrice = (!filters.minPrice || game.price_pln >= filters.minPrice) &&
-                           (!filters.maxPrice || game.price_pln <= filters.maxPrice);
-      const matchesType = filters.type === "Wszystkie" || game.type.toLowerCase() === filters.type.toLowerCase();
-      const matchesPlayers = (!filters.minPlayers || game.min_players >= filters.minPlayers) &&
-                             (!filters.maxPlayers || game.max_players <= filters.maxPlayers);
-      const matchesPublisher = !filters.publisher || game.publisher.toLowerCase().includes(filters.publisher.toLowerCase());
-      const matchesQuery = !filters.query || game.description.some(d => d.toLowerCase().includes(filters.query.toLowerCase()));
-      const matchesTime = !filters.minTime || game.avg_play_time_minutes >= filters.minTime;
+      if (filters.minPrice && game.price_pln < filters.minPrice) return false;
+      if (filters.maxPrice && game.price_pln > filters.maxPrice) return false;
+      if (filters.type !== "Wszystkie" && game.type !== filters.type.toLowerCase()) return false;
+      if (filters.minPlayers && game.max_players < filters.minPlayers) return false;
+      if (filters.maxPlayers && game.min_players > filters.maxPlayers) return false;
+      if (filters.publisher && !game.publisher.toLowerCase().includes(filters.publisher.toLowerCase())) return false;
+      if (filters.descriptionWord && !game.description.some(d => d.toLowerCase().includes(filters.descriptionWord.toLowerCase()))) return false;
+      if (filters.minTime && game.avg_play_time_minutes < filters.minTime) return false;
+      if (filters.maxTime && game.avg_play_time_minutes > filters.maxTime) return false;
 
-      return matchesPrice && matchesType && matchesPlayers && matchesPublisher && matchesQuery && matchesTime;
+      return true;
     });
     setFilteredGames(filtered);
   };
@@ -46,15 +48,32 @@ export default function Home() {
         <label>Rodzaj:</label>
         <select onChange={(e) => setFilters({...filters, type: e.target.value})}>
           <option>Wszystkie</option>
+          <option>Abstrakcyjna</option>
           <option>Ekonomiczna</option>
-          <option>Przygodowa</option>
-          <option>Towarzyska</option>
-          <option>Kooperacyjna</option>
           <option>Karciana</option>
+          <option>Kooperacyjna</option>
+          <option>Przygodowa</option>
+          <option>Rodzinna</option>
+          <option>Towarzyska</option>
         </select>
 
+        <label>Minimalna liczba graczy:</label>
+        <input type="number" onChange={(e) => setFilters({...filters, minPlayers: e.target.value})} />
+        
+        <label>Maksymalna liczba graczy:</label>
+        <input type="number" onChange={(e) => setFilters({...filters, maxPlayers: e.target.value})} />
+
+        <label>Minimalny czas gry:</label>
+        <input type="number" placeholder="w minutach" onChange={(e) => setFilters({...filters, minTime: e.target.value})} />
+        
+        <label>Maksymalny czas gry:</label>
+        <input type="number" placeholder="w minutach" onChange={(e) => setFilters({...filters, maxTime: e.target.value})} />
+
+        <label>Wydawca:</label>
+        <input type="text" placeholder="np. Rebel" onChange={(e) => setFilters({...filters, publisher: e.target.value})} />
+
         <label>Słowo w opisie:</label>
-        <input type="text" placeholder="np. fantastyka" onChange={(e) => setFilters({...filters, query: e.target.value})} />
+        <input type="text" placeholder="np. fantastyka" onChange={(e) => setFilters({...filters, descriptionWord: e.target.value})} />
 
         <button className="search-button" onClick={handleSearch}>Szukaj</button>
       </aside>

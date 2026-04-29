@@ -7,24 +7,27 @@ import Link from "next/link";
 export default function GameDetails({ params }) {
   // Rozpakowujemy promise params za pomocą hooka use()
   const resolvedParams = use(params);
-  const id = resolvedParams.id;
 
   // Szukamy gry w danych na podstawie id
-  const game = gamesData.board_games.find(g => g.id === parseInt(id));
+  const game = gamesData.board_games.find(g => g.id === parseInt(resolvedParams.id));
+
+  const addPlaceholder = (e) => {
+    e.target.src = "/placeholder_300x300.webp";
+  };
 
   if (!game) {
     return (
       <main style={{ padding: "20px" }}>
         <h1>Nie znaleziono gry.</h1>
-        <Link href="/">← Powrót do listy</Link>
+        <Link href="/" style={{textDecoration: 'none'}}>&#60; Powrót do listy</Link>
       </main>
     );
   }
 
   return (
     <main className="details-container" style={{ padding: "20px" }}>
-      <Link href="/" style={{ marginBottom: "20px", display: "inline-block" }}>
-        ← Powrót do listy
+      <Link href="/" style={{ marginBottom: "20px", textDecoration: 'none' }}>
+        &#60; Powrót do listy
       </Link>
       
       <section className="game-details">
@@ -38,6 +41,7 @@ export default function GameDetails({ params }) {
               <img 
                 key={index} 
                 src={`/${img}`} 
+                onError={addPlaceholder}
                 alt={`${game.title} - zdjęcie ${index + 1}`} 
                 style={{ width: '300px', height: 'auto', borderRadius: '8px', border: '1px solid #ddd' }} 
               />
