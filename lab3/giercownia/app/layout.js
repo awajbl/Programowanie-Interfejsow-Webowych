@@ -11,7 +11,7 @@ export default function RootLayout({ children }) {
     <html lang="pl">
       <body>
         <header className="top-bar">
-          <Link href="/" style={{ textDecoration: 'none', color: 'inherit' }}><h1>Giercownia</h1></Link>
+          <Link href="/" className="logo"><h1>Giercownia</h1></Link>
           <nav>
             <button>Zarejestruj</button>
             <button>Zaloguj</button>

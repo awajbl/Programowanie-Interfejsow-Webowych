@@ -79,7 +79,7 @@ export default function Home() {
       </aside>
 
       <section className="products">
-        <div className="products-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+        <div className="products-header">
           <h2>Lista gier ({filteredGames.length})</h2>
           <Link href="/games/add">
             <button className="add-button" style={{ padding: '10px 20px', cursor: 'pointer', background: '#27ae60', color: 'white', border: 'none', borderRadius: '5px' }}>

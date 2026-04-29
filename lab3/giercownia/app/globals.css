@@ -1,12 +1,206 @@
-body { font-family: sans-serif; margin: 0; display: flex; flex-direction: column; }
-.top-bar { display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; background: #333; color: white; }
-main { display: flex; padding: 20px; gap: 20px; }
-.filters { width: 250px; display: flex; flex-direction: column; gap: 10px; padding: 15px; background: #f4f4f4; border-radius: 8px; }
-.filters input, .filters select { padding: 8px; }
-.products { flex-grow: 1; }
-.product-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; }
-.product-card { border: 1px solid #ddd; padding: 15px; border-radius: 8px; cursor: pointer; transition: 0.2s; }
-.product-card:hover { border-color: #0070f3; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-.product-card-link { text-decoration: none; color: inherit; }
-.search-button { background: #0070f3; color: white; border: none; padding: 10px; cursor: pointer; border-radius: 5px; }
-.price-tag { font-size: 1.5rem; color: #2ecc71; font-weight: bold; }
+:root {
+  --primary-color: #0070f3;
+  --success-color: #27ae60;
+  --warning-color: #f39c12;
+  --danger-color: #e74c3c;
+  --text-main: #333;
+  --text-light: #666;
+  --bg-light: #f4f4f4;
+  --bg-ultra-light: #f9f9f9;
+  --border-color: #ddd;
+  --radius: 8px;
+  --radius-sm: 4px;
+  --gap: 20px;
+}
+
+body {
+  font-family: sans-serif;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  color: var(--text-main);
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: #333;
+  color: white;
+}
+
+.logo {
+  text-decoration: none;
+  color: inherit;
+}
+
+main {
+  display: flex;
+  padding: var(--gap);
+  gap: var(--gap);
+}
+
+/* Formularze i kontenery */
+.form-container, .details-container {
+  flex-direction: column;
+  max-width: 800px;
+  margin: auto;
+}
+
+.game-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-evenly;
+  gap: 10px;
+}
+
+/* Filtry */
+.filters {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 15px;
+  background: var(--bg-light);
+  border-radius: var(--radius);
+}
+
+.filters input, .filters select {
+  padding: 8px;
+}
+
+/* Produkty */
+.products {
+  flex-grow: 1;
+}
+
+.products-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--gap);
+}
+
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--gap);
+}
+
+.product-card {
+  border: 1px solid var(--border-color);
+  padding: 15px;
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.product-card:hover {
+  border-color: var(--primary-color);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.product-card-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Detale gry */
+.back-link {
+  display: inline-block;
+  margin-bottom: var(--gap);
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+.expansion-label {
+  color: var(--text-light);
+}
+
+.image-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: var(--gap) 0;
+}
+
+.gallery-img {
+  width: 300px;
+  height: auto;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-color);
+}
+
+.no-image {
+  padding: var(--gap);
+  background: #eee;
+  border-radius: var(--radius);
+}
+
+.description-list {
+  line-height: 1.6;
+}
+
+.specs-box {
+  margin-top: var(--gap);
+  padding: 15px;
+  background: var(--bg-ultra-light);
+  border-radius: var(--radius);
+}
+
+/* Przyciski */
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+.search-button {
+  background: var(--primary-color);
+  color: white;
+  padding: 10px;
+}
+
+.add-button {
+  padding: 10px 20px;
+  background: var(--success-color);
+  color: white;
+}
+
+.btn-edit {
+  margin-top: 40px;
+  padding: 8px 15px;
+  background: var(--warning-color);
+  color: white;
+}
+
+.btn-save {
+  padding: 10px;
+  background: var(--success-color);
+  color: white;
+  flex-grow: 1;
+}
+
+.btn-cancel {
+  padding: 10px;
+  background: var(--danger-color);
+  color: white;
+  flex-grow: 1;
+}
+
+.price-tag {
+  font-size: 1.5rem;
+  color: #2ecc71;
+  font-weight: bold;
+}

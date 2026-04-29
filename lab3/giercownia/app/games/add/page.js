@@ -37,46 +37,46 @@ export default function GameForm({ params }) {
     e.preventDefault();
     console.log("Dane do zapisu (tymczasowe):", {
       ...formData,
-      id: isEditMode ? parseInt(resolvedParams.id) : Date.now(),
-      description: formData.description.split("\n") // Rozbijamy tekst z powrotem na tablicę
+      id: isEditMode ? parseInt(resolvedParams.id) : Date.now(), //data jako id
+      description: formData.description.split("\n") // tak jak w json
     });
     alert(isEditMode ? "Zaktualizowano (log w konsoli)" : "Dodano nową grę (log w konsoli)");
     router.push("/");
   };
 
   return (
-    <main style={{ padding: "20px", margin: "auto" }}>
+    <main className="form-container">
       <h1>{isEditMode ? "Edytuj grę" : "Dodaj nową grę"}</h1>
       
-      <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
+      <form onSubmit={handleSubmit} className="game-form">
         
         <label>Tytuł gry:</label>
         <input type="text" value={formData.title} required
           onChange={(e) => setFormData({...formData, title: e.target.value})} />
 
         <div>
-        <label>Cena (PLN):</label>
-        <input type="number" step="0.01" min="0.01" value={formData.price_pln} required
-            onChange={(e) => setFormData({...formData, price_pln: e.target.value})} />
+          <label>Cena (PLN):</label>
+          <input type="number" step="0.01" min="0.01" value={formData.price_pln} required
+              onChange={(e) => setFormData({...formData, price_pln: e.target.value})} />
         </div>
 
         <div>
-        <label>Typ:</label>
-        <select value={formData.type} onChange={(e) => setFormData({...formData, type: e.target.value})}>
-              <option>Abstrakcyjna</option>
-              <option>Ekonomiczna</option>
-              <option>Karciana</option>
-              <option>Kooperacyjna</option>
-              <option>Przygodowa</option>
-              <option>Rodzinna</option>
-              <option>Towarzyska</option>
-            </select>
+          <label>Typ:</label>
+          <select value={formData.type} onChange={(e) => setFormData({...formData, type: e.target.value})}>
+            <option>Abstrakcyjna</option>
+            <option>Ekonomiczna</option>
+            <option>Karciana</option>
+            <option>Kooperacyjna</option>
+            <option>Przygodowa</option>
+            <option>Rodzinna</option>
+            <option>Towarzyska</option>
+          </select>
         </div>
         
         <div>
-        <label>Min. graczy:</label>
-        <input type="number"  min="1" value={formData.min_players} required
-            onChange={(e) => setFormData({...formData, min_players: e.target.value})} />
+          <label>Min. graczy:</label>
+          <input type="number" min="1" value={formData.min_players} required
+              onChange={(e) => setFormData({...formData, min_players: e.target.value})} />
         </div>
 
         <div>
@@ -111,13 +111,12 @@ export default function GameForm({ params }) {
             onChange={(e) => setFormData({...formData, description: e.target.value})} />
         </div>
 
-
-        <div style={{ marginTop: "20px", display: "flex", justifyContent: "space-evenly", gap: "10px" }}>
-          <button type="submit" style={{ padding: "10px", background: "#27ae60", color: "white", border: "none", cursor: "pointer" }}>
+        <div className="form-actions">
+          <button type="submit" className="btn-save">
             Zapisz zmiany
           </button>
-          <Link href="/">
-            <button type="button" style={{padding: "10px", background: "#e74c3c", color: "white", border: "none", cursor: "pointer" }}>
+          <Link href="/" style={{ flexGrow: 1, display: 'flex', textDecoration: 'none' }}> 
+            <button type="button" className="btn-cancel" style={{ width: '100%' }}>
               Anuluj
             </button>
           </Link>
